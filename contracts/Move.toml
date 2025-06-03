@@ -1,0 +1,10 @@
+[package]
+name = "liveart"
+version = "1.0.0"
+edition = "2024"
+
+[dependencies]
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "devnet" }
+
+[addresses]
+liveart = "0x0"
