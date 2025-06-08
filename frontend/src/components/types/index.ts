@@ -21,6 +21,9 @@ export interface LiveArtNFT {
   owner?: string;
   created_at?: number;
   transformation_history?: NFTTransformation[];
+  // Marketplace properties ✅ Fixed type
+  is_listed?: boolean;
+  list_price?: number; // Changed to number
 }
 
 export interface NFTTransformation {

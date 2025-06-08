@@ -239,7 +239,8 @@ interface NftContextType {
 
 // =================== Context Creation ===================
 
-const NftContext = createContext<NftContextType | undefined>(undefined);
+// eslint-disable-next-line react-refresh/only-export-components
+export const NftContext = createContext<NftContextType | undefined>(undefined);
 
 // =================== Provider Component ===================
 

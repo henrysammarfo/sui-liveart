@@ -360,25 +360,26 @@ export class SuiService {
       const fields = (suiObject as SuiObjectTyped).data!.content.fields;
       
       return {
-        id: (suiObject as SuiObjectTyped).data!.objectId,
-        name: fields.name || '',
-        description: fields.description || '',
-        image_url: typeof fields.image_url === 'object' && fields.image_url !== null
-          ? fields.image_url.fields?.url || ''
-          : (fields.image_url as string) || '',
-        creator: fields.creator || '',
-        data_source: fields.data_source || '',
-        market_value: parseInt(fields.market_value || '0'),
-        sentiment_score: parseInt(fields.sentiment_score || '5'),
-        volatility: fields.volatility || 'medium',
-        trend: fields.trend || 'neutral',
-        last_updated: parseInt(fields.last_updated || '0'),
-        color_scheme: fields.color_scheme || 'blue',
-        animation_speed: parseInt(fields.animation_speed || '1'),
-        opacity: parseInt(fields.opacity || '100'),
-        owner: (suiObject as SuiObjectTyped).data!.owner?.AddressOwner || '',
-        created_at: parseInt(fields.last_updated || '0'),
-      };
+  id: (suiObject as SuiObjectTyped).data!.objectId,
+  name: fields.name || '',
+  description: fields.description || '',
+  image_url: typeof fields.image_url === 'object' && fields.image_url !== null
+    ? fields.image_url.fields?.url || ''
+    : (fields.image_url as string) || '',
+  creator: fields.creator || '',
+  data_source: fields.data_source || '',
+  market_value: parseInt(fields.market_value || '0'),
+  sentiment_score: parseInt(fields.sentiment_score || '5'),
+  volatility: fields.volatility || 'medium',
+  trend: fields.trend || 'neutral',
+  last_updated: parseInt(fields.last_updated || '0'),
+  color_scheme: fields.color_scheme || 'blue',
+  animation_speed: parseInt(fields.animation_speed || '1'),
+  opacity: parseInt(fields.opacity || '100'),
+  owner: (suiObject as SuiObjectTyped).data!.owner?.AddressOwner || '',
+  created_at: parseInt(fields.last_updated || '0'),
+  list_price: undefined
+};
     } catch (error) {
       console.error('Error parsing NFT from Sui object:', error);
       return null;
