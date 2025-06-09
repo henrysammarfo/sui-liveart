@@ -1,5 +1,5 @@
 import React from 'react';
-import { Activity, Shield, Database, Clock, TrendingUp, Zap } from 'lucide-react';
+import { Activity, Shield, Database, Clock, TrendingUp } from 'lucide-react';
 
 // =================== Feature Data ===================
 
@@ -41,50 +41,32 @@ const features = [
 
 // =================== Features Section Component ===================
 
-const FeaturesSection: React.FC = () => {
-  return (
-    <section className="relative py-20">
-      {/* Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/10 rounded-full filter blur-3xl" />
+const FeaturesSection: React.FC = () => (
+  <section className="relative py-20">
+    {/* Purple blur blob */}
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div className="w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] bg-purple-500/10 rounded-full filter blur-3xl" />
+    </div>
+
+    <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Header update */}
+      <div className="text-center mb-16">
+        <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+          <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+            Revolutionary
+          </span>{' '}
+          <span className="text-white">Features</span>
+        </h2>
+        <p className="text-lg text-gray-400 max-w-3xl mx-auto">
+          LiveArt Sui combines cutting-edge blockchain technology with real-time data integration to create truly dynamic digital collectibles.
+        </p>
       </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-slate-800/50 border border-slate-600/50 text-slate-300 text-sm font-medium mb-6">
-            <Zap className="w-4 h-4 mr-2" />
-            Powered by Innovation
-          </div>
-          
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              Why Choose
-            </span>
-            <br />
-            <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-              Sui LiveArt?
-            </span>
-          </h2>
-          
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Experience the future of digital art where your NFTs are no longer static images, 
-            but living, breathing creations that respond to the world around them.
-          </p>
-        </div>
-
-        {/* Features Grid */}
-        <div className="grid lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="group relative"
-            >
-              {/* Card Glow Effect */}
-              <div className={`absolute -inset-1 bg-gradient-to-r ${feature.gradient} rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-xl`} />
-              
-              {/* Feature Card */}
-              <div className="relative h-full bg-slate-800/60 backdrop-blur-sm border border-slate-600/50 rounded-2xl p-8 hover:border-slate-500/70 transition-all duration-300">
+         {/* Grid */}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {features.map((feature, idx) => (
+          <div key={idx} className="group relative">
+            <div className="absolute -inset-1 bg-gradient-to-r ${feature.gradient} rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-xl" />
+            <div className="relative h-full bg-slate-800/40 backdrop-blur-md border border-slate-700/40 rounded-2xl p-8 hover:shadow-[0_0_20px_rgba(139,92,246,0.4)] transition-all duration-300">
                 {/* Icon */}
                 <div className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-r ${feature.gradient} p-0.5 mb-6`}>
                   <div className="w-full h-full bg-slate-800 rounded-xl flex items-center justify-center">
@@ -167,6 +149,5 @@ const FeaturesSection: React.FC = () => {
       </div>
     </section>
   );
-};
 
 export default FeaturesSection;

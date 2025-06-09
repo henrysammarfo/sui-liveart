@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { NftProvider } from './context/NftContext';
-import MainLayout from './layouts/MainLayout';
+import {MainLayout} from './layouts/MainLayout';
 import Home from './components/pages/Home';
 import Explore from './components/pages/Explore';
 import Creator from './components/pages/Creator';
