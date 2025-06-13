@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Palette, Zap, BarChart3, Plus, Eye, Sparkles } from 'lucide-react';
 import TriggerBuilder from '../creator/TriggerBuilder';
 import CreatorDashboard from '../creator/CreatorDashboard';
+import { useNft } from '../../hooks/useNft';
+import type { NFTCreationData } from '../types';
 
 const Creator: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'create' | 'manage'>('create');
@@ -16,7 +18,7 @@ const Creator: React.FC = () => {
   const [showPreview, setShowPreview] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
   
-  const { createNft } = useNftContext();
+  const { mintNft } = useNft();
 
   const handleFormChange = (field: string, value: string | number) => {
     setNftForm(prev => ({
@@ -33,14 +35,20 @@ const Creator: React.FC = () => {
 
     setIsCreating(true);
     try {
-      await createNft({
+      const nftData: NFTCreationData = {
         name: nftForm.name,
         description: nftForm.description,
+        image_url: '/api/placeholder/400/400', // Default placeholder
         data_source: nftForm.data_source,
-        color_scheme: nftForm.color_scheme,
-        animation_speed: nftForm.animation_speed,
-        opacity: nftForm.opacity
-      });
+        initial_properties: {
+          color_scheme: nftForm.color_scheme,
+          animation_speed: nftForm.animation_speed,
+          opacity: nftForm.opacity
+        },
+        triggers: [] // Empty triggers for now
+      };
+
+      await mintNft(nftData);
       
       // Reset form
       setNftForm({
@@ -344,16 +352,3 @@ const Creator: React.FC = () => {
 };
 
 export default Creator;
-
-type CreateNftParams = {
-  name: string;
-  description: string;
-  data_source: string;
-  color_scheme: string;
-  animation_speed: number;
-  opacity: number;
-};
-
-function useNftContext(): { createNft: (params: CreateNftParams) => Promise<void>; } {
-    throw new Error('Function not implemented.');
-}

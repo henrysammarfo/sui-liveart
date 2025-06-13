@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import NFTStateVisualization from '../nft/NFTStateVisualization';
+import { useNft } from '../../hooks/useNft';
 import type { LiveArtNFT } from '../types';
 import { 
   ArrowLeft, 
@@ -21,26 +22,21 @@ import {
 const NFTDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { getNftById, loading, error } = useNftContext();
+  const { state } = useNft();
   const [nft, setNft] = useState<LiveArtNFT | null>(null);
   const [isLiked, setIsLiked] = useState(false);
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [activeTab, setActiveTab] = useState<'details' | 'history' | 'activity'>('details');
 
-  useEffect(() => {
-    const fetchNft = async () => {
-      if (id) {
-        try {
-          const nftData = await getNftById(id);
-          setNft(nftData);
-        } catch (err) {
-          console.error('Failed to fetch NFT:', err);
-        }
-      }
-    };
+  const loading = state.loadingStates.fetchAllNfts === 'loading';
+  const error = state.loadingStates.fetchAllNfts === 'error';
 
-    fetchNft();
-  }, [id, getNftById]);
+  useEffect(() => {
+    if (id && state.allNfts.length > 0) {
+      const foundNft = state.allNfts.find(n => n.id === id);
+      setNft(foundNft || null);
+    }
+  }, [id, state.allNfts]);
 
   const handleShare = async () => {
     if (navigator.share && nft) {
@@ -356,11 +352,3 @@ const NFTDetail: React.FC = () => {
 };
 
 export default NFTDetail;
-
-function useNftContext(): { 
-  getNftById: (id: string) => Promise<LiveArtNFT>; 
-  loading: boolean; 
-  error: string | null; 
-} {
-    throw new Error('Function not implemented.');
-}

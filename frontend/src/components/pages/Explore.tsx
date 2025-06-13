@@ -1,10 +1,14 @@
 import React, { useState, useMemo } from 'react';
 import { Search, Filter, TrendingUp, TrendingDown, Minus, Grid3X3, List } from 'lucide-react';
 import NFTCard from '../marketplace/NFTCard';
+import { useNft } from '../../hooks/useNft';
 import type { LiveArtNFT } from '../types';
 
 const Explore: React.FC = () => {
-  const { nfts, loading, error } = useNftContext();
+  const { state } = useNft();
+  const { allNfts: nfts, loadingStates } = state;
+  const loading = loadingStates.fetchAllNfts === 'loading';
+  const error = loadingStates.fetchAllNfts === 'error' ? 'Failed to load NFTs' : null;
   
   // Filter and sort states
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -296,7 +300,3 @@ const Explore: React.FC = () => {
 };
 
 export default Explore;
-
-function useNftContext(): { nfts: LiveArtNFT[]; loading: boolean; error: string | null; } {
-    throw new Error('Function not implemented.');
-}
