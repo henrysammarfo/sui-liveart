@@ -181,12 +181,11 @@ const ConnectWallet: React.FC = () => {
       <button
         onClick={handleConnect}
         className="
-          flex items-center space-x-2 px-4 py-2 
-          bg-gradient-to-r from-purple-600 to-blue-600 
-          hover:from-purple-700 hover:to-blue-700
+          flex items-center space-x-2 px-6 py-2.5 
+          bg-blue-600 hover:bg-blue-700
           text-white font-medium rounded-lg 
           transition-all duration-200 
-          hover:shadow-lg hover:shadow-purple-500/25
+          hover:shadow-lg hover:shadow-blue-500/25
           hover:scale-105
         "
       >
@@ -201,7 +200,7 @@ const ConnectWallet: React.FC = () => {
       <button
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         className="
-          flex items-center space-x-2 px-4 py-2 
+          flex items-center space-x-3 px-4 py-2.5 
           bg-slate-800/50 border border-slate-700/50
           hover:bg-slate-700/50 hover:border-slate-600/50
           text-white rounded-lg 

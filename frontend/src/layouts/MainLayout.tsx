@@ -8,7 +8,7 @@ import { Toaster } from 'react-hot-toast';
 // Import your context
 import { NftProvider } from '../context/NftContext';
 
-// Import pages (these will be created next)
+// Import pages
 import Home from '../components/pages/Home';
 import Explore from '../components/pages/Explore';
 import Creator from '../components/pages/Creator';
@@ -16,7 +16,7 @@ import Marketplace from '../components/pages/Marketplace';
 import DataFeeds from '../components/pages/DataFeeds';
 import NFTDetail from '../components/pages/NFTDetail';
 
-// Import navigation components (to be created)
+// Import navigation components
 import Navbar from '../components/navigation/Navbar';
 import Footer from '../components/navigation/Footer';
 
@@ -40,14 +40,14 @@ interface MainLayoutProps {
 
 export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900/10 to-slate-900">
       {/* Background Effects */}
-      <div className="fixed inset-0 bg-[url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.02&quot;%3E%3Ccircle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;2&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20" />
+      <div className="fixed inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.02"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20" />
       
       {/* Animated Background Gradients */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-radial from-purple-500/10 via-transparent to-transparent animate-pulse" />
-        <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-radial from-blue-500/10 via-transparent to-transparent animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-radial from-blue-500/5 via-transparent to-transparent animate-pulse" />
+        <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-radial from-purple-500/5 via-transparent to-transparent animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
       {/* Main Content */}
@@ -55,8 +55,8 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         {/* Navigation */}
         <Navbar />
         
-        {/* Main Content Area */}
-        <main className="flex-1">
+        {/* Main Content Area with top padding for fixed navbar */}
+        <main className="flex-1 pt-16">
           {children}
         </main>
         
